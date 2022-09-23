@@ -1,24 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import { Fragment } from "react";
+import useLocalStorage from "./hooks/useLocalStorage";
 
 function App() {
+  const [value, setValue] = useLocalStorage('name','jonathan');
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      <div style={{padding:'100px'}}>
+        <h2>Welcome, custom useLocalStorage Hook...</h2>
+        <p>while you're changing value of input, hook stores the current data in local storage</p>
+        <input value={value} onChange={(e) => setValue(e.target.value)} />
+      </div>
+    </Fragment>
   );
 }
 

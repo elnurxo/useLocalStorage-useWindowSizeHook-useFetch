@@ -11,8 +11,8 @@ function App() {
   const { width, height } = useWindowSize();
 
   //fetch hook
-  const {responseJSON, isLoading, error} = useFetch('https://northwind.vercel.app/api/suppliers');
   const[url, setUrl] = useState('');
+  const {responseJSON, isLoading, error} = useFetch('https://northwind.vercel.app/api/suppliers');
 
   return (
     <Fragment>
@@ -45,7 +45,21 @@ function App() {
           {
             error ? <p style={{color:'red'}}>Error: {error}</p> :
             isLoading ? <p>Loading...</p> :
-            <p>Response: {responseJSON}</p>
+           <>
+           <br/>
+            <span><b>Response:</b> </span>
+            <div>
+              {responseJSON && responseJSON.map((item,key)=>{
+             return (
+              <div  key={key}>
+              <span>id: {item.id}</span>
+              <br/>
+              <span>country name: {item.address.country}</span>
+          </div>
+             )
+            })}
+            </div>
+           </>
           }
         </div>
       </div>
